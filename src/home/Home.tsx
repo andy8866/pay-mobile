@@ -89,8 +89,9 @@ function Home(props:any) {
         navigate("/bank");
     }
 
-    return (<div className="App">
-        <Grid columns={4} gap={8}>
+    return (
+        <div className="App">
+        <Grid columns={3} gap={4}>
             <Grid.Item>
                 <Button color='primary' fill='outline' onClick={onGotoBank}>银行卡</Button>
             </Grid.Item>
