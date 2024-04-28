@@ -1,5 +1,4 @@
 import React from 'react';
-import './Register.css';
 import {Button, Dialog, Form, Input, Space} from "antd-mobile";
 import axios from "axios";
 
