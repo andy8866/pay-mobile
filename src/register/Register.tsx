@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
-import './Login.css';
-import {Button, Dialog, Form, Input} from "antd-mobile";
+import React from 'react';
+import './Register.css';
+import {Button, Dialog, Form, Input, Space} from "antd-mobile";
 import axios from "axios";
 
 
-function Login() {
+function Register() {
     const [form] = Form.useForm()
-
     function onSubmit() {
         let phone = form.getFieldValue("phone")
         let password = form.getFieldValue("password")
@@ -17,7 +16,7 @@ function Login() {
             password
         };
 
-        axios.post('/api/user/login',data )
+        axios.post('/api/user/register',data )
             .then(function (response) {
                 console.log(response);
                 let data=response.data
@@ -28,9 +27,7 @@ function Login() {
                     return ;
                 }
 
-                let token=data.data;
-                localStorage.setItem("token",token);
-                window.location.href="/";
+                window.location.href="/login";
 
             })
             .catch(function (error) {
@@ -40,20 +37,15 @@ function Login() {
             });
     }
 
-    function onRegister() {
-        window.location.href="/reg";
+    function onBack() {
+        window.location.href="/login";
     }
 
     return (
     <div>
         <Form form={form} layout='horizontal' mode={"card"}
-            footer={
-                <Button block type='submit' color='primary' size='large' onClick={onSubmit}>
-                    登录
-                </Button>
-            }
         >
-            <Form.Header>登录</Form.Header>
+            <Form.Header>注册</Form.Header>
 
             <Form.Item name='phone' label='电话：' initialValue={"181949558935"}>
                 <Input />
@@ -62,13 +54,18 @@ function Login() {
                 <Input type='password'/>
             </Form.Item>
             <Form.Item childElementPosition={"right"}>
-                <Button color='primary' fill='none' onClick={onRegister}>
-                    注册
-                </Button>
+                <Space wrap>
+                    <Button  size='large' onClick={onBack}>
+                        返回
+                    </Button>
+                    <Button color='primary' size='large' onClick={onSubmit}>
+                        提交
+                    </Button>
+                </Space>
             </Form.Item>
         </Form>
     </div>
   );
 }
 
-export default Login;
+export default Register;
