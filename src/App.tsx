@@ -6,6 +6,9 @@ import Login from "./login/Login";
 import Register from "./register/Register";
 import Bank from "./bank/Bank";
 import AddBank from "./bank/AddBank";
+import Deposit from "./deposit/Deposit";
+import DepositOrder from "./deposit/DepositOrder";
+import DepositOrderList from "./deposit/DepositOrderList";
 
 
 function App() {
@@ -18,6 +21,9 @@ function App() {
                 <Route path="/reg" element={<Register />} />
                 <Route path="/bank" element={<Bank />} />
                 <Route path="/addBank" element={<AddBank />} />
+                <Route path="/deposit" element={<Deposit />} />
+                <Route path="/depositOrder" element={<DepositOrder />} />
+                <Route path="/depositOrderList" element={<DepositOrderList />} />
             </Routes>
         </BrowserRouter>
     );

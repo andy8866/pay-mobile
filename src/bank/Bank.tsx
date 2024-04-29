@@ -2,10 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {Button, Dialog, Grid, List, NavBar} from "antd-mobile";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
-
-function Bank() {
+function Bank(props:any) {
     const navigate = useNavigate();
+    let location = useLocation();
 
     const [bank_list, set_bank_list] = useState([]);
 
@@ -51,6 +52,13 @@ function Bank() {
         navigate("/addBank");
     }
 
+    function onChoose(id:any) {
+        localStorage.setItem("chooseBank",id);
+        navigate(-1);
+    }
+
+
+
     function get_bank_list_ui() {
         let list = [];
 
@@ -62,9 +70,9 @@ function Bank() {
             let depositary_bank = bank['depositary_bank'];
             let sub_branch = bank['sub_branch'];
 
-
             list.push(
-                <List.Item key={id}>
+                <List.Item key={id} onClick={()=>onChoose(id)}>
+                    <div>ID:{id}</div>
                     <div>姓名:{real_name}</div>
                     <div>卡号:{card_no}</div>
                     <div>开户行:{depositary_bank}</div>

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, Card, Dialog, Grid, List} from "antd-mobile";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {coin_precision} from "../coin";
 
 function Home(props:any) {
     const navigate = useNavigate();
@@ -56,12 +57,7 @@ function Home(props:any) {
         return "未知币种";
     }
 
-    function  get_coin_precision(coin_type:number){
-        if (coin_type==1){
-            return 8;
-        }
-        return 2;
-    }
+
 
     function get_asset_list_ui(){
         let list=[];
@@ -70,9 +66,9 @@ function Home(props:any) {
             let asset=asset_list[i];
             let id=asset['id'];
             let coin_type=asset['coin_type'];
-            let amount=Number(asset['amount']).toFixed(get_coin_precision(coin_type));
-            let freeze=Number(asset['freeze']).toFixed(get_coin_precision(coin_type));
 
+            let amount=coin_precision(coin_type,asset['amount']);
+            let freeze=coin_precision(coin_type,asset['freeze']);
 
             list.push(
                 <List.Item key={id} extra={amount} description={"冻结:"+freeze} clickable>
@@ -88,12 +84,24 @@ function Home(props:any) {
     function onGotoBank() {
         navigate("/bank");
     }
+    function onDeposit() {
+        navigate("/deposit");
+    }
+    function onDepositList() {
+        navigate("/depositOrderList");
+    }
 
     return (
         <div className="App">
         <Grid columns={3} gap={4}>
             <Grid.Item>
                 <Button color='primary' fill='outline' onClick={onGotoBank}>银行卡</Button>
+            </Grid.Item>
+            <Grid.Item>
+                <Button color='primary' fill='outline' onClick={onDeposit}>充值</Button>
+            </Grid.Item>
+            <Grid.Item>
+                <Button color='primary' fill='outline' onClick={onDepositList}>充值订单列表</Button>
             </Grid.Item>
         </Grid>
             {get_asset_list_ui()}
