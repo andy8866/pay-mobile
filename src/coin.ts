@@ -22,3 +22,10 @@ export function coin_precision(coin_type:number,amount:number){
 export function rate_precision(amount:number){
     return Number(amount).toFixed(8);
 }
+
+export function get_coin_str(coin_type:number){
+    if (coin_type==COIN_B){
+        return COIN_B_STR;
+    }
+    return "未知币种";
+}
