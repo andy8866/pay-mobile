@@ -9,6 +9,9 @@ import AddBank from "./bank/AddBank";
 import Deposit from "./deposit/Deposit";
 import DepositOrder from "./deposit/DepositOrder";
 import DepositOrderList from "./deposit/DepositOrderList";
+import WithdrawOrderList from "./withdraw/WithdrawOrderList";
+import WithdrawOrder from "./withdraw/WithdrawOrder";
+import Withdraw from "./withdraw/Withdraw";
 
 
 function App() {
@@ -24,6 +27,9 @@ function App() {
                 <Route path="/deposit" element={<Deposit />} />
                 <Route path="/depositOrder" element={<DepositOrder />} />
                 <Route path="/depositOrderList" element={<DepositOrderList />} />
+                <Route path="/withdrawOrderList" element={<WithdrawOrderList />} />
+                <Route path="/withdrawOrder" element={<WithdrawOrder />} />
+                <Route path="/withdraw" element={<Withdraw />} />
             </Routes>
         </BrowserRouter>
     );

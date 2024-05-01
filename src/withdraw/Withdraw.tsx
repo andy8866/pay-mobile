@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Dialog, Form, Input, NavBar, Space} from "antd-mobile";
+import {Button, Dialog, Form, Input, NavBar} from "antd-mobile";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {COIN_B, COIN_B_STR} from "../coin";
 
-function Deposit() {
+function Withdraw() {
     const [form] = Form.useForm()
 
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ function Deposit() {
             remark:""
         };
 
-        axios.post('/api/order/deposit',data )
+        axios.post('/api/order/withdraw/apply',data )
             .then(function (response) {
                 console.log(response);
                 let data=response.data
@@ -46,7 +46,7 @@ function Deposit() {
                 }
 
                 let id=data.data;
-                navigate("/depositOrder",{state:{id:id,fromDeposit:true}})
+                navigate("/withdrawOrder",{state:{id:id,fromWithdraw:true}})
 
             })
             .catch(function (error) {
@@ -67,7 +67,7 @@ function Deposit() {
     return (
     <div>
         <NavBar back='返回' onBack={onBack}>
-            充值
+            提款
         </NavBar>
         <Form form={form} layout='horizontal' mode={"card"}
               footer={
@@ -76,10 +76,10 @@ function Deposit() {
             <Form.Item name='coin_type' label='币种：' initialValue={COIN_B_STR}>
                 <Input />
             </Form.Item>
-            <Form.Item name='coin_amount' label='充值金额：' initialValue={1.1}>
+            <Form.Item name='coin_amount' label='提款数量：' initialValue={1.1}>
                 <Input/>
             </Form.Item>
-            <Form.Item name='bank' label='充值银行卡：'>
+            <Form.Item name='bank' label='收款银行卡：'>
                 ID: {bankId}
                 <Button color='primary' fill='outline' onClick={onChooseBank}>选择银行卡</Button>
             </Form.Item>
@@ -91,4 +91,4 @@ function Deposit() {
   );
 }
 
-export default Deposit;
+export default Withdraw;

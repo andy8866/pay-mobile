@@ -18,8 +18,9 @@ function Bank(props:any) {
 
     function get_bank_list() {
         let data = {
-            tenant_id: 1,
             token: localStorage.getItem("token"),
+            tenant_id: 0,
+            user_id: 0,
         };
 
         axios.post('/api/bank/get_list_by_user', data)

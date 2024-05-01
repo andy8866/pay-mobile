@@ -24,8 +24,10 @@ function Home(props:any) {
 
     function get_asset_list(){
         let data={
-            tenant_id: 1,
             token:localStorage.getItem("token"),
+            tenant_id: 0,
+            user_id: 0,
+            search_user_id: 0,
         };
 
         axios.post('/api/asset/get_list_by_user',data )
@@ -91,19 +93,39 @@ function Home(props:any) {
         navigate("/depositOrderList");
     }
 
+    function onWithdrawList() {
+        navigate("/withdrawOrderList");
+    }
+
+    function onWithdraw() {
+        navigate("/withdraw");
+    }
+
     return (
         <div className="App">
-        <Grid columns={3} gap={4}>
-            <Grid.Item>
-                <Button color='primary' fill='outline' onClick={onGotoBank}>银行卡</Button>
-            </Grid.Item>
-            <Grid.Item>
-                <Button color='primary' fill='outline' onClick={onDeposit}>充值</Button>
-            </Grid.Item>
-            <Grid.Item>
-                <Button color='primary' fill='outline' onClick={onDepositList}>充值订单列表</Button>
-            </Grid.Item>
-        </Grid>
+            <Grid columns={3} gap={4}>
+                <Grid.Item>
+                    <Button color='primary' fill='outline' onClick={onGotoBank} style={{width:'100%'}}>银行卡</Button>
+                </Grid.Item>
+            </Grid>
+            <div style={{height:4}}></div>
+            <Grid columns={3} gap={4}>
+                <Grid.Item>
+                    <Button color='primary' fill='outline' onClick={onDepositList} style={{width:'100%'}}>充值订单列表</Button>
+                </Grid.Item>
+                <Grid.Item>
+                    <Button color='primary' fill='outline' onClick={onDeposit} style={{width:'100%'}}>充值</Button>
+                </Grid.Item>
+            </Grid>
+            <div style={{height:4}}></div>
+            <Grid columns={3} gap={4}>
+                <Grid.Item>
+                    <Button color='primary' fill='outline' onClick={onWithdrawList} style={{width:'100%'}}>提款订单列表</Button>
+                </Grid.Item>
+                <Grid.Item>
+                    <Button color='primary' fill='outline' onClick={onWithdraw} style={{width:'100%'}}>提款</Button>
+                </Grid.Item>
+            </Grid>
             {get_asset_list_ui()}
         </div>
     );
