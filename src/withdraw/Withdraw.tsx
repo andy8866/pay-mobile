@@ -25,7 +25,7 @@ function Withdraw() {
         let bank_id = localStorage.getItem("chooseBank")
 
         let data={
-            token:localStorage.getItem("token"),
+            token:localStorage.getItem("userToken"),
             tenant_id: 0,
             user_id: 0,
             coin_type,

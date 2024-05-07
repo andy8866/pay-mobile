@@ -29,7 +29,7 @@ function Login() {
                 }
 
                 let token=data.data;
-                localStorage.setItem("token",token);
+                localStorage.setItem("userToken",token);
                 window.location.href="/";
 
             })

@@ -13,7 +13,7 @@ function Home(props:any) {
     useEffect(() => {
         console.log("useEffect")
 
-        if(localStorage.getItem("token")==null){
+        if(localStorage.getItem("userToken")==null){
             // window.location.href="/login";
             return navigate("/login");
         }
@@ -24,7 +24,7 @@ function Home(props:any) {
 
     function get_asset_list(){
         let data={
-            token:localStorage.getItem("token"),
+            token:localStorage.getItem("userToken"),
             tenant_id: 0,
             user_id: 0,
             search_user_id: 0,

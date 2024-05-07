@@ -18,7 +18,7 @@ function Bank(props:any) {
 
     function get_bank_list() {
         let data = {
-            token: localStorage.getItem("token"),
+            token: localStorage.getItem("userToken"),
             tenant_id: 0,
             user_id: 0,
         };
